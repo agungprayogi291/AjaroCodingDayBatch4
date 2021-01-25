@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 class CategorisController extends Controller
 {
     public function index(){
-        return view('layouts.app');
+        return view('categories.index');
+    }
+
+    public function edit(Request $request){
+        return view('categories.edit');
     }
 }
