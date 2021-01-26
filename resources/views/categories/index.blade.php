@@ -16,7 +16,7 @@ Categories
                 <tr>
                     <td>Judul kategori</td>
                     <td>
-                        <a href="" class="btn btn-link text-info">Edit</a>
+                        <a href="{{route('categoriesEdit')}}" class="btn btn-link text-info">Edit</a>
                         <a href="" class="btn btn-link text-danger">Delete</a>
                     </td>
                 </tr>

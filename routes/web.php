@@ -3,6 +3,7 @@
 use App\Http\Controllers\ExampleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategorisController;
+use App\Http\Controllers\ProductsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,4 +20,6 @@ Route::get('/', function () {
 });
 
 Route::get('/categories/index',[CategorisController::class,'index'])->name('categories');
-Route::get('/categories/{id}/edit',[CategorisController::class,'edit'])->name('categoriesEdit');
+Route::get('/categories/edit',[CategorisController::class,'edit'])->name('categoriesEdit');
+
+Route::get('/products/index',[ProductsController::class,'index'])->name('products');
