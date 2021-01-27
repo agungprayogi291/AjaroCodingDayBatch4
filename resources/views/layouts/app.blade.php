@@ -67,6 +67,6 @@
   <!-- /.control-sidebar -->
 
   <!-- Main Footer -->
-  @inlcude('layouts.components.footer')
+  @include('layouts.components.footer')
 </body>
 </html>

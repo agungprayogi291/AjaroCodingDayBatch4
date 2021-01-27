@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\ExampleController;
+
+
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CategorisController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SuppliersController;
 /*
@@ -16,13 +17,10 @@ use App\Http\Controllers\SuppliersController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/categories/index',[CategorisController::class,'index'])->name('categories');
-Route::get('/categories/edit',[CategorisController::class,'edit'])->name('categoriesEdit');
-
-Route::get('/products/index',[ProductsController::class,'index'])->name('products');
-
+Route::resource('categories',CategoryController::class);
+Route::resource('products',ProductsController::class);
 Route::get('/suppliers/index',[SuppliersController::class,'index'])->name('suppliers');
