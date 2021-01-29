@@ -17,9 +17,13 @@ Categories
         @foreach($categories as $category)
                 <tr>
                     <td>{{$category->name}}</td>
-                    <td>
-                        <a href="/categories/{{$category->id}}/edit" class="btn btn-link text-info">Edit</a>
-                        <a href="" class="btn btn-link text-danger">Delete</a>
+                    <td class="row">
+                        <a href="/categories/{{$category->id}}/edit" class="btn btn-link text-info col-2" >Edit</a>
+                        <form action="/categories/{{$category->id}}" method="POST" class="col-10">
+                        @csrf   
+                        @method("DELETE")
+                        <button class="btn btn-link text-danger" type="submit">Delete</button>
+                        </form>
                     </td>
                 </tr>
         @endforeach
