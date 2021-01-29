@@ -14,7 +14,8 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        return view('Products.index');
+        $products = Products::all();
+        return view('Products.index',['products' => $products]);
     }
 
     /**
@@ -24,7 +25,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
+        return view('Products.create');
     }
 
     /**
@@ -35,7 +36,15 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new Products;
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->purchase_price =$request->purchaseprice;
+        $product->sale_price = $request->saleprice;
+        $product->stock = $request->stock;
+        $product->category_id = $request->category;
+        $product->save();
+        return redirect('/products');
     }
 
     /**
@@ -55,9 +64,11 @@ class ProductsController extends Controller
      * @param  \App\Models\Products  $products
      * @return \Illuminate\Http\Response
      */
-    public function edit(Products $products)
+    public function edit($products)
     {
-        //
+        $product = Products::find($products);
+        return view('Products.edit',['product'=>$product]);
+        
     }
 
     /**
@@ -67,9 +78,18 @@ class ProductsController extends Controller
      * @param  \App\Models\Products  $products
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Products $products)
+    public function update(Request $request,$products)
     {
-        //
+        $product = Products::find($products);
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->purchase_price =$request->purchaseprice;
+        $product->sale_price = $request->saleprice;
+        $product->stock = $request->stock;
+        $product->category_id = $request->category;
+        $product->save();
+        return redirect('/products');
+
     }
 
     /**
@@ -78,8 +98,10 @@ class ProductsController extends Controller
      * @param  \App\Models\Products  $products
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Products $products)
+    public function destroy($products)
     {
-        //
+        $product = Products::find($products);
+        $product->delete();
+        return redirect('/products');
     }
 }

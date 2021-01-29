@@ -3,24 +3,40 @@
 <h1>Products</h1>
 @endsection
 @section('content')
+<a href="/products/create" class="btn btn-success px-4 ">+Add</a>
     <table class="table">
         <thead >
             <tr>
                 <th>Name</th>
                 <th>description</th>
+                <th>purchase price</th>
+                <th>sale price</th>
+                <th>stock</th>   
+                <th>category</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
+        @foreach($products as $product)
             <tr>
-                <td>productsNme</td>
-                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                 Officia sit, illo facere id saepe, </td>
+                <td>{{$product->name}}</td>
+                <td>{{$product->description}}</td>
+                 <td>{{$product->purchase_price}}</td>
+                 <td>{{$product->sale_price}}</td>
+                 <td>{{$product->stock}}</td>
+                 <td>{{$product->category_id}}</td>
                  <td>
-                    <a href="" class="btn btn-link text-info">Edit</a>
-                    <a href="" class="btn btn-link text-danger">Delet</a>
+                    <a href="/products/{{$product->id}}/edit" class="btn btn-link text-info">Edit</a>
+                    <form action="/products/{{$product->id}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                         <button class="btn text-danger">Delete</button>
+                    </form>
+                  
                  </td>
+                 
             </tr>
+            @endforeach
         </tbody>
     </table>
 @endsection
