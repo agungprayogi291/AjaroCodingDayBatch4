@@ -5,7 +5,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductsController;
-use App\Http\Controllers\SuppliersController;
+use App\Http\Controllers\SupplierController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,4 +23,4 @@ use App\Http\Controllers\SuppliersController;
 
 Route::resource('categories',CategoryController::class);
 Route::resource('products',ProductsController::class);
-Route::get('/suppliers/index',[SuppliersController::class,'index'])->name('suppliers');
+Route::resource('suppliers',SupplierController::class);
