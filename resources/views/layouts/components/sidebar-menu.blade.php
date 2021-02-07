@@ -20,7 +20,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="/purchases" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Purchases
@@ -28,7 +28,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/supliers" class="nav-link">
+            <a href="/suppliers" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Suppliers
@@ -44,7 +44,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/products" class="nav-link">
+            <a href="/product" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Products

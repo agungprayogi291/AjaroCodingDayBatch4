@@ -3,7 +3,7 @@
 <h1>Products</h1>
 @endsection
 @section('content')
-<a href="/products/create" class="btn btn-success px-4 ">+Add</a>
+<a href="/product/create" class="btn btn-success px-4 ">+Add</a>
     <table class="table">
         <thead >
             <tr>
@@ -12,11 +12,12 @@
                 <th>purchase price</th>
                 <th>sale price</th>
                 <th>stock</th>   
-                <th>category</th>
+                <td>category</td>
                 <th></th>
             </tr>
         </thead>
         <tbody>
+       
         @foreach($products as $product)
             <tr>
                 <td>{{$product->name}}</td>
@@ -24,7 +25,7 @@
                  <td>{{$product->purchase_price}}</td>
                  <td>{{$product->sale_price}}</td>
                  <td>{{$product->stock}}</td>
-                 <td>{{$product->category_id}}</td>
+                 <td>{{$product->category->name}}</td>
                  <td>
                     <a href="/products/{{$product->id}}/edit" class="btn btn-link text-info">Edit</a>
                     <form action="/products/{{$product->id}}" method="POST">

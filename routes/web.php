@@ -4,8 +4,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\PurchaseController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,5 +23,6 @@ use App\Http\Controllers\SupplierController;
 // });
 
 Route::resource('categories',CategoryController::class);
-Route::resource('products',ProductsController::class);
+Route::resource('product',ProductController::class);
 Route::resource('suppliers',SupplierController::class);
+Route::resource('purchases',PurchaseController::class)->only(['create','store','index','show']);

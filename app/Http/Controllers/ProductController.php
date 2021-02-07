@@ -1,21 +1,26 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Products;
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
-class ProductsController extends Controller
+class ProductController extends Controller
 {
-    /**
+     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $products = Products::all();
-        return view('Products.index',['products' => $products]);
+        $products = Product::all();
+      
+        $data = [
+            'products'=> $products
+          
+        ];
+        return view('Products.index',$data);
     }
 
     /**
@@ -25,7 +30,12 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('Products.create');
+        $categories = Category::all();
+        
+        $data = [
+            'categories' => $categories
+        ];
+        return view('Products.create',$data);
     }
 
     /**
@@ -36,15 +46,22 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        $product = new Products;
+        $request->validate([
+            'name' => 'required',
+            'description' => 'nullable',
+            'purchase_price' => 'required|numeric|between:1,9999999999',
+            'sale_price' => 'required|numeric|between:1,9999999',
+            'category_id' => 'required|exists:categories,id'
+        ]);
+        $product = new Product;
         $product->name = $request->name;
         $product->description = $request->description;
-        $product->purchase_price =$request->purchaseprice;
-        $product->sale_price = $request->saleprice;
+        $product->purchase_price =$request->purchase_price;
+        $product->sale_price = $request->sale_price;
         $product->stock = $request->stock;
-        $product->category_id = $request->category;
+        $product->category_id = $request->categories_id;
         $product->save();
-        return redirect('/products');
+        return redirect('/product');
     }
 
     /**
@@ -83,12 +100,12 @@ class ProductsController extends Controller
         $product = Products::find($products);
         $product->name = $request->name;
         $product->description = $request->description;
-        $product->purchase_price =$request->purchaseprice;
-        $product->sale_price = $request->saleprice;
+        $product->purchase_price =$request->purchase_price;
+        $product->sale_price = $request->sale_price;
         $product->stock = $request->stock;
-        $product->category_id = $request->category;
+        $product->categories_id = $request->categories_id;
         $product->save();
-        return redirect('/products');
+        return redirect('/product');
 
     }
 
@@ -102,6 +119,6 @@ class ProductsController extends Controller
     {
         $product = Products::find($products);
         $product->delete();
-        return redirect('/products');
+        return redirect('/product');
     }
 }
